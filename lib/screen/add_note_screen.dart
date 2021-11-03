@@ -98,6 +98,13 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     }
   }
 
+  _delete() {
+    DatabaseHelper.instance.deleteNote(widget.note!.id!);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (_) => HomeScreen()));
+    widget.updateNoteList!();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,6 +237,27 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                           ),
                         ),
                       ),
+                      widget.note != null
+                          ? Container(
+                              margin: const EdgeInsets.symmetric(vertical: 1.0),
+                              height: 60.0,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: ElevatedButton(
+                                onPressed: _delete,
+                                child: const Text(
+                                  "Delete Note",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ),

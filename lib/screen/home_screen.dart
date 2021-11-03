@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               context,
               CupertinoPageRoute(
                   builder: (_) => AddNoteScreen(
-                        updateNoteList: _updateNoteList,
+                        updateNoteList: _updateNoteList(),
                       )));
         },
         backgroundColor: Theme.of(context).primaryColor,
@@ -101,13 +101,13 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return const Center(
-              child: Text(
-                "List is empty. Press the add buttn to add note",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold),
-              ),
+              // child: Text(
+              //   "List is empty. Press the add buttn to add note",
+              //   style: TextStyle(
+              //       color: Colors.black,
+              //       fontSize: 20.0,
+              //       fontWeight: FontWeight.bold),
+              child: CircularProgressIndicator(),
             );
           }
 
